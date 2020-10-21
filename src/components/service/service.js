@@ -15,10 +15,5 @@ class FetchData {
         return await res.json();
     }
 
-    createMessage = (mes) => {
-        return (mes)
-    }
-
-
 }
 export default FetchData;

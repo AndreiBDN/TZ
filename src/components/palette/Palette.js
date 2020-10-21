@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import ColorPicker from 'rc-color-picker';
  
 import 'rc-color-picker/assets/index.css';
+import './palette.css';
 
 class Palette extends Component {
  

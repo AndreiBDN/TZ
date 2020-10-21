@@ -1,0 +1,12 @@
+/* Header */
+ul{
+    display: flex;
+}
+ul>li{
+    margin: 19px;
+}
+ul>li>a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+}

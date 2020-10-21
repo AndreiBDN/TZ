@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import img from '../../Vector.svg';
 import FetchData from '../service/service';
+import './form.css'
 
 class Form extends Component{
 

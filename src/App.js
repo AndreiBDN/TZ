@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
       <Header />
        <Route path="/form" component={Form}/>
-       <Route path="/palette" component={Palette}/>
+       <Route exact path="/palette" component={Palette}/>
 
       </BrowserRouter>
       </div>
