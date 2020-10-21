@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './header.css';
 
 const Header = () => {
@@ -7,10 +7,10 @@ const Header = () => {
         <header>
         <ul>
           <li>
-            <Link to="/form">Форма</Link>
+            <NavLink to="/form">Форма</NavLink>
           </li>
           <li>
-            <Link to="/palette">Палитра</Link>
+            <NavLink to="/palette">Палитра</NavLink>
           </li>
         </ul>
       </header>
