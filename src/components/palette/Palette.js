@@ -64,7 +64,7 @@ class Palette extends Component {
         }
         return item
       });
-
+      localStorage.setItem('colors', JSON.stringify(newPalette));
       return {
         palette: newPalette
       }
