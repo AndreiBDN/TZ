@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'GothamPro';
+    src: local('GothamPro'), url(./fonts/GothamPro.woff) format('opentype');
+  }
+  
+  @font-face {
+      font-family: 'GothamPro';
+      font-weight: 700;
+      src: local('GothamPro'), url(./fonts/GothamPro-Bold.woff) format('opentype');
+  }
+  
 body{
     background-color: #1F2223;
     padding: 43px;

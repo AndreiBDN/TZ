@@ -4,11 +4,11 @@ class FetchData {
     }
     
     postData = async (data)=> {
-        
+        console.log(data);
         const res = await fetch(this.url,{
             method: 'post',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'content-type': 'multipart/form-data'
             },
             body: JSON.stringify(data)
         })

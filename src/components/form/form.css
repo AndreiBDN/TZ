@@ -14,6 +14,8 @@
     margin-bottom: 5px;
     color:rgba(235, 235, 245, 0.6);
     font-size: 13px;
+    font-family: "GothamPro", sans-serif;
+    font-weight: 400;
 }
 .form-label_img{
     position: relative;
@@ -22,7 +24,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 122px;
     height: 86px;
     background: rgba(118, 118, 128, 0.24);
     border-radius: 10px;
@@ -31,10 +32,13 @@
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
+
 .form-label_img > span{
     position: absolute;
     top: -20px;
     left: 0;
+    font-family: "GothamPro", sans-serif;
+    font-weight: 400;
 
 }
 
@@ -70,6 +74,8 @@
     outline: none;
     border: none;
     padding: 14px;
+    font-family: "GothamPro", sans-serif;
+    font-weight: 400;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
@@ -77,6 +83,10 @@
 }
 .respons-wrap {
     margin-top: 23px;
+}
+.respons-wrap span {
+    font-family: "GothamPro", sans-serif;
+    font-weight: 700;
 }
 .response-answer {
     padding: 5px 10px;
@@ -90,3 +100,21 @@
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
+.image-wrapper{
+    width: 122px;
+    height: 86px;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.image-error {
+    color: crimson;
+}
+

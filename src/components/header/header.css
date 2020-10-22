@@ -1,16 +1,18 @@
 /* Header */
-ul{
+.header-nav{
     display: flex;
 }
-ul>li{
+.header-nav-item{
     margin: 19px;
 }
-ul>li>a{
+.header-nav__link{
     text-decoration: none;
     color: #fff;
     font-size: 17px;
+    font-family: "GothamPro", sans-serif;
+    font-weight: 400;
 }
-ul>li>a.active:after{
+.header-nav__link.active:after{
     content: "";
     display: block;
     width: 100%;

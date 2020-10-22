@@ -12,11 +12,16 @@ class Form extends Component{
     this.state ={
         imageUrl: null,
         imageName: null,
-        message:''
+        imageError: '',
+        message:'',
+        name:'',
+        surname:'',
+        patronymic:'',
     }
     }
     onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
+      console.log(event.target.files[0]);
         this.setState({
         image: event.target.files[0],
         imageUrl: URL.createObjectURL(event.target.files[0]),
@@ -29,20 +34,57 @@ class Form extends Component{
       const value = e.target.value
       this.setState({[name]: value})
     }
+    onDrop = (e) => {
+      e.preventDefault();
+      const file = [...e.dataTransfer.files];
+      if(file[0].type !== "image/jpeg" && file[0].type !== "image/png" && file[0].type !== "image/webp"){
+        this.setState(({imageError})=>{
+          return{
 
+            imageError: "Допускаются только файлы изображений!"
+          }
+        })
+      } else {
+        this.setState({
+          image: file[0],
+          imageUrl: URL.createObjectURL(file[0]),
+          imageName: file[0].name,
+          imageError: ''
+          });
+        
+      }
+     
+
+    }
+    onDragStart = (e) => {
+      e.preventDefault();
+
+    }
+    onDragLeave = (e) => {
+      e.preventDefault();
+
+    }
+    onDragOver = (e) => {
+      e.preventDefault();
+
+    }
 
     sendData = (event) => {
       event.preventDefault();
+      const formData = new FormData();
+      const contact = [
+        this.state.name,
+        this.state.surname,
+        this.state.patronymic
+      ]
+
+      formData.append('image', this.state.image);
       const body = {
         action: 'send_data',
         id: 1,
-        image: this.state.image,
-        contact: [
-          this.state.name,
-          this.state.surname,
-          this.state.patronymic
-        ]
-        
+        image: formData,
+        contact: contact
+   
       }
       this.fetchData.postData(body)
       .then((message) => {
@@ -60,7 +102,7 @@ class Form extends Component{
      const textMessage = this.showMessage(this.state.message)
     return(
         <>
-        <form onSubmit={this.sendData}>
+        <form onSubmit={this.sendData} >
         <label className="form-label">
           <span className="name-item">Имя</span>
           <input
@@ -88,14 +130,28 @@ class Form extends Component{
            type="text"
            value={this.state.patronymic} />
         </label>
-        <label className="form-label form-label_img">
+        <label
+        className="form-label form-label_img">
           <span className="name-item">Фото</span>
-          <img className="image-screen" src={this.state.imageUrl ? this.state.imageUrl : img} alt={this.state.imageName ? this.state.imageName : 'icon'} />
+          <div 
+          onDragStart={e => this.onDragStart(e)}
+          onDragLeave={e => this.onDragLeave(e)}
+          onDragOver={e => this.onDragOver(e)}
+          onDrop={e => this.onDrop(e)}
+          className="image-wrapper">
+          <img
+          className="image-screen" 
+          src={this.state.imageUrl ? this.state.imageUrl : img} 
+          alt={this.state.imageName ? this.state.imageName : 'icon'} />
+          
+          </div>
+         
           <input 
           ref={this.fileInput}
           onChange={this.onImageChange}
           className="form-img" name="image" type="file" accept=".png, .jpg, .jpeg"/>
         </label>
+        <span className="image-error">{this.state.imageError}</span>
         <button className="btn btn-form" type="submit">Сохранить</button>
       </form>
       <div className="respons-wrap">

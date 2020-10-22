@@ -10,33 +10,45 @@ class Palette extends Component {
       super(props)
       this.state = {
         palette: [],
-
       }
     }
 
-    generateKey = () =>{
+  componentDidMount() {
+    const myPalette = JSON.parse(localStorage.getItem('colors'));
+
+    this.setState(({palette})=>{
+      return {
+        palette: myPalette
+      }
+    })
+  }
+
+  generateKey = () =>{
       const key = 'react' + Math.floor(new Date());
       return key
   }
 
    
-    onCreateColor = () => {
-      const newcolor = {
-          color: '#44abe2',
-          key: this.generateKey(),
-      }
-      this.setState(({palette}) => {
-          const newArr = [...palette, newcolor];
-          return {
-            palette: newArr
-          }
-      })
+  onCreateColor = () => {
+    const newcolor = {
+        color: '#44abe2',
+        key: this.generateKey(),
+    }
+    this.setState(({palette}) => {
+        const newArr = [...palette, newcolor];
+        localStorage.setItem('colors', JSON.stringify(newArr));
+        return {
+          palette: newArr
+        }
+    })
   }
+
+
 
   onDeleteColor = (id) => {
     this.setState(({palette})=>{
       const newPalette = palette.filter(item => item.key !== id);
-
+      localStorage.setItem('colors', JSON.stringify(newPalette));
       return {
         palette: newPalette
       }

@@ -2,7 +2,7 @@
 .palette-wrap {
     display: grid;
     gap: 25px;
-    grid-template-columns: repeat( auto-fit, minmax(54px, 1fr) );
+    grid-template-columns: repeat( auto-fill, minmax(54px, 1fr) );
    
 }
 .color-cell {
