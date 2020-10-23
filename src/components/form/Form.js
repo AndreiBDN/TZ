@@ -21,7 +21,6 @@ class Form extends Component{
     }
     onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      console.log(event.target.files[0]);
         this.setState({
         image: event.target.files[0],
         imageUrl: URL.createObjectURL(event.target.files[0]),
@@ -72,26 +71,29 @@ class Form extends Component{
     sendData = (event) => {
       event.preventDefault();
       const formData = new FormData();
-      const contact = {
-        'name': this.state.name,
-        'surname': this.state.surname,
-        'patronymic':this.state.patronymic
-      }
+      formData.set('action', 'send_data');
+      formData.set('id', 1);
+      formData.set('contacts[name]', this.state.name);
+      formData.set('contacts[surname]', this.state.surname);
+      formData.set('contacts[patronymic]', this.state.patronymic);
+      formData.set('image', this.state.image);
 
-      formData.append('action', 'send_data');
-      formData.append('id', 1);
-
-      formData.append('contact', JSON.stringify(contact));
-      formData.append('image', this.state.image);
       this.fetchData.postData(formData)
-      .then((message) => {
-        this.setState(({message}))
+      .then((res) => {
+        this.setState(({message}) => {
+          return {
+            message: res
+          }
+        })
       })
     }
 
     showMessage (mes){
       return (
+     <>
+      <p>{mes.status}</p>
       <p>{mes.msg}</p>
+     </>
       )
     }
 
