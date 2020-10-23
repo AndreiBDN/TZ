@@ -10,7 +10,7 @@ class FetchData {
             headers: {
                 'content-type': 'multipart/form-data'
             },
-            body: JSON.stringify(data)
+            body: data
         })
         return await res.json();
     }

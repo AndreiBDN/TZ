@@ -15,12 +15,16 @@ class Palette extends Component {
 
   componentDidMount() {
     const myPalette = JSON.parse(localStorage.getItem('colors'));
+    if(myPalette){
+      this.setState(({palette})=>{
+        return {
+          palette: myPalette
+        }
+      })
 
-    this.setState(({palette})=>{
-      return {
-        palette: myPalette
-      }
-    })
+    }
+
+   
   }
 
   generateKey = () =>{
@@ -67,11 +71,15 @@ class Palette extends Component {
       localStorage.setItem('colors', JSON.stringify(newPalette));
       return {
         palette: newPalette
+        
       }
+      
     })
+    
   }
  
     render() {
+      
       const colors = this.state.palette.map((item) => {
         return (
           <ColorPicker

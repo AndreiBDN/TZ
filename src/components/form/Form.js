@@ -72,21 +72,18 @@ class Form extends Component{
     sendData = (event) => {
       event.preventDefault();
       const formData = new FormData();
-      const contact = [
-        this.state.name,
-        this.state.surname,
-        this.state.patronymic
-      ]
-
-      formData.append('image', this.state.image);
-      const body = {
-        action: 'send_data',
-        id: 1,
-        image: formData,
-        contact: contact
-   
+      const contact = {
+        'name': this.state.name,
+        'surname': this.state.surname,
+        'patronymic':this.state.patronymic
       }
-      this.fetchData.postData(body)
+
+      formData.append('action', 'send_data');
+      formData.append('id', 1);
+
+      formData.append('contact', JSON.stringify(contact));
+      formData.append('image', this.state.image);
+      this.fetchData.postData(formData)
       .then((message) => {
         this.setState(({message}))
       })
